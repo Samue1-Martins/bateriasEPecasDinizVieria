@@ -10,24 +10,46 @@ Site institucional e catálogo público de produtos e baterias automotivas para 
 - **[React](https://react.dev/)** (v19.3.0) — Biblioteca para construção de interfaces reativas.
 - **[TypeScript](https://www.typescriptlang.org/)** (v5) — Tipagem estática rigorosa para escalabilidade e segurança.
 - **[Tailwind CSS](https://tailwindcss.com/)** (v4) — Framework de estilização baseado em classes utilitárias e variáveis semânticas.
+- **[shadcn/ui](https://ui.shadcn.com/)** (v4) — Coleção de componentes acessíveis e customizáveis baseados em `@base-ui/react`.
+- **[Lucide React](https://lucide.dev/)** — Biblioteca moderna de ícones vetoriais.
 - **[ESLint](https://eslint.org/)** (v9) — Padronização de código e garantia de boas práticas.
 - **Firebase** *(Próxima etapa)* — Integração planejada para armazenamento de dados do catálogo e imagens via Firestore / Storage.
 
 ---
 
-## 🎨 Identidade Visual
+## 🎨 Identidade Visual & Design System
 
-O projeto foi configurado com a paleta oficial da Auto Peças Diniz Vieira:
+### Paleta de Cores Oficial
 
-| Cor | Hex | Token Tailwind | CSS Variable |
-| :--- | :--- | :--- | :--- |
-| **Preto** | `#151515` | `bg-brand-black` / `text-brand-black` | `--brand-black` |
-| **Branco** | `#FFFFFF` | `bg-brand-white` / `text-brand-white` | `--brand-white` |
-| **Vermelho** | `#D62828` | `bg-brand-red` / `text-brand-red` | `--brand-red` |
-| **Amarelo** | `#F4C542` | `bg-brand-yellow` / `text-brand-yellow` | `--brand-yellow` |
-| **Cinza Claro** | `#F5F5F5` | `bg-brand-gray` / `text-brand-gray` | `--brand-gray` |
+| Cor | Hex | Token Tailwind | Variável Semântica shadcn/ui | Utilização |
+| :--- | :--- | :--- | :--- | :--- |
+| **Preto** | `#151515` | `bg-brand-black` / `text-brand-black` | `--foreground` | Textos e elementos de destaque |
+| **Branco** | `#FFFFFF` | `bg-brand-white` / `text-brand-white` | `--background`, `--card` | Fundo principal da aplicação |
+| **Vermelho** | `#D62828` | `bg-brand-red` / `text-brand-red` | `--primary`, `--ring` | Botões e ações principais (CTA) |
+| **Amarelo** | `#F4C542` | `bg-brand-yellow` / `text-brand-yellow` | `--secondary`, `--accent` | Destaques, badges e etiquetas |
+| **Cinza Claro** | `#F5F5F5` | `bg-brand-gray` / `text-brand-gray` | `--muted` | Fundos secundários e cartões |
 
-Tipografia padrão: **Inter** (carregada via `next/font/google` com fallback do sistema).
+### Tipografia
+- Fonte principal: **Manrope** (pesos 400 a 800 carregados via `next/font/google` com display `swap` e fallbacks de sistema).
+
+---
+
+## 🧩 Componentes de Interface (shadcn/ui)
+
+Componentes instalados e centralizados em `src/components/ui`:
+- **Button:** Variantes `default` (vermelho), `secondary` (amarelo), `outline`, `whatsapp`, `destructive`, `ghost` e tamanhos `sm`, `default`, `lg`.
+- **Card:** `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`.
+- **Badge:** Etiquetas semânticas com suporte a variantes `default`, `secondary`, `outline`, `dark` e `gray`.
+- **Input:** Campo de entrada com foco tematizado na identidade da marca.
+- **Separator:** Divisor horizontal e vertical acessível.
+
+### Ícones Padronizados (Lucide React)
+- `Wrench` — Serviços, oficina e ferramentas.
+- `BatteryCharging` — Baterias e sistema elétrico.
+- `Droplet` — Óleos, lubrificantes e fluidos.
+- `Search` — Busca e filtros de catálogo.
+- `Phone` — Telefonia e contato direto.
+- `ArrowRight` — Navegação e direcionamento.
 
 ---
 
@@ -61,6 +83,13 @@ npm run dev
 
 Abra [http://localhost:3000](http://localhost:3000) no navegador para visualizar a aplicação.
 
+### 4. Guia Visual / Teste de Componentes
+Acesse a rota interna de desenvolvimento:
+```
+http://localhost:3000/ui-preview
+```
+*(Esta rota é restrita a homologação visual e não é exibida na navegação pública).*
+
 ---
 
 ## 💻 Comandos Disponíveis
@@ -77,56 +106,32 @@ Abra [http://localhost:3000](http://localhost:3000) no navegador para visualizar
 
 ## 📂 Estrutura de Pastas
 
-O projeto adota uma arquitetura modular estruturada sob o diretório `src/`:
-
 ```text
 bateriasEPecasDinizVieria/
-├── public/                 # Arquivos estáticos públicos (favicons, imagens estáticas)
+├── public/                 # Arquivos estáticos públicos
 ├── src/
 │   ├── app/                # App Router do Next.js
+│   │   ├── ui-preview/     # Página de testes visuais e Design System (/ui-preview)
 │   │   ├── favicon.ico     # Ícone da aplicação
-│   │   ├── globals.css     # Estilos globais e tokens de cores do Tailwind v4
-│   │   ├── layout.tsx      # Layout raiz com configuração de fonte e metadados
+│   │   ├── globals.css     # Estilos globais e tokens semânticos do shadcn/Tailwind v4
+│   │   ├── layout.tsx      # Layout raiz com configuração global da fonte Manrope
 │   │   └── page.tsx        # Página inicial provisória com validação visual
 │   │
 │   ├── components/         # Componentes React reutilizáveis
-│   │   ├── categories/     # Componentes de exibição de categorias (CategoryCard)
-│   │   ├── layout/         # Componentes de estrutura (Header, Footer)
-│   │   ├── products/       # Componentes de exibição de produtos (ProductCard)
-│   │   └── ui/             # Primitivos de UI (Button, Badge)
+│   │   ├── categories/     # Componentes de exibição de categorias
+│   │   ├── layout/         # Componentes estruturais (Header, Footer)
+│   │   ├── products/       # Componentes de produtos (ProductCard)
+│   │   └── ui/             # Primitivos shadcn/ui (Button, Card, Badge, Input, Separator)
 │   │
-│   ├── lib/                # Constantes, configurações e funções utilitárias
-│   │   ├── constants.ts    # Dados da empresa, contatos, paleta e rotas
-│   │   └── utils.ts        # Utilitários (formatCurrency, cn)
-│   │
-│   ├── services/           # Camada de serviços (preparada para integração Firebase)
-│   │   ├── products.service.ts # Contrato e serviços de produtos/categorias
-│   │   └── index.ts
-│   │
-│   ├── types/              # Definições de tipos e interfaces TypeScript
-│   │   ├── category.ts     # Interfaces de Categoria
-│   │   ├── company.ts      # Interfaces institucionais da empresa
-│   │   ├── product.ts      # Interfaces de Produto e filtros
-│   │   └── index.ts
-│   │
-│   └── assets/             # Constantes de ativos e referências a imagens
-│       └── index.ts
+│   ├── lib/                # Constantes, dados institucionais e utilitários (cn, formatCurrency)
+│   ├── services/           # Camada de serviços preparada para Firebase
+│   ├── types/              # Interfaces TypeScript de produtos, categorias e empresa
+│   └── assets/             # Mapeamento de recursos gráficos
 │
-├── .gitignore              # Arquivos e diretórios ignorados pelo Git
-├── AGENTS.md               # Instruções e diretrizes de agentes Next.js
-├── eslint.config.mjs       # Configuração moderna do ESLint 9 (Flat Config)
+├── components.json         # Configuração oficial do shadcn/ui
+├── eslint.config.mjs       # Configuração do ESLint 9
 ├── next.config.ts          # Configurações do Next.js
 ├── package.json            # Metadados e dependências do projeto
 ├── README.md               # Documentação principal do projeto
-└── tsconfig.json           # Configuração do compilador TypeScript e alias `@/*`
+└── tsconfig.json           # Configuração TypeScript e alias `@/*`
 ```
-
----
-
-## 🔒 Regras de Negócio & Escopo
-
-Nesta fase de infraestrutura e ambiente inicial:
-- Apenas funcionalidades públicas e de catálogo informativo.
-- Sem e-commerce, carrinho, pagamentos ou autenticação de usuários.
-- Atendimento e cotações realizados via integração com links diretos do WhatsApp.
-- Base de dados futura configurada para conectar com Firebase Firestore e Storage.
