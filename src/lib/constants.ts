@@ -48,9 +48,10 @@ export const COMPANY_DETAILS: CompanyInfo = {
 
 export const NAV_ITEMS = [
   { label: "Início", href: "#inicio" },
-  { label: "Sobre Nós", href: "#sobre" },
-  { label: "Produtos & Baterias", href: "#produtos" },
+  { label: "Diferenciais", href: "#diferenciais" },
   { label: "Categorias", href: "#categorias" },
+  { label: "Baterias & Peças", href: "#baterias" },
+  { label: "Sobre Nós", href: "#sobre" },
   { label: "Contato", href: "#contato" },
 ] as const;
 
