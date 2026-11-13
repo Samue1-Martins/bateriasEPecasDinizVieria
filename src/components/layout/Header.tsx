@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, MessageCircle } from 'lucide-react';
@@ -12,9 +12,63 @@ const NAV_LINKS = [
   { label: 'Catálogo', href: '/catalogo' },
 ] as const;
 
+// Componente interno que consome o usePathname
+function NavigationContent() {
+  const pathname = usePathname();
+
+  return (
+    <>
+      {/* Desktop Navigation (lg+) */}
+      <nav className="hidden lg:flex items-center gap-8">
+        {NAV_LINKS.map((link) => {
+          const isActive = link.href === '/' 
+            ? pathname === '/' 
+            : pathname?.startsWith(link.href);
+
+          return (
+            <Link
+              key={link.label}
+              href={link.href}
+              className={
+                isActive
+                  ? 'relative py-5 text-sm font-semibold text-[#D62828] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2.5px] after:bg-[#D62828]'
+                  : 'text-sm font-medium text-neutral-600 hover:text-[#151515] transition-colors'
+              }
+            >
+              {link.label}
+            </Link>
+          );
+        })}
+      </nav>
+
+      {/* Tablet sub-bar: nav links (md to lg) */}
+      <div className="hidden md:flex lg:hidden items-center justify-center gap-8 border-t border-neutral-100 py-2.5 w-full">
+        {NAV_LINKS.map((link) => {
+          const isActive = link.href === '/' 
+            ? pathname === '/' 
+            : pathname?.startsWith(link.href);
+
+          return (
+            <Link
+              key={link.label}
+              href={link.href}
+              className={
+                isActive
+                  ? 'relative py-1 text-sm font-semibold text-[#D62828] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#D62828]'
+                  : 'text-sm font-medium text-neutral-600 hover:text-[#151515] transition-colors'
+              }
+            >
+              {link.label}
+            </Link>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
 export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
   const whatsappUrl = buildWhatsAppLink('Olá! Gostaria de informações sobre peças.');
 
   return (
@@ -35,28 +89,10 @@ export const Header: React.FC = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation (lg+) */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {NAV_LINKS.map((link) => {
-              const isActive = link.href === '/' 
-                ? pathname === '/' 
-                : pathname?.startsWith(link.href);
-
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={
-                    isActive
-                      ? 'relative py-5 text-sm font-semibold text-[#D62828] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2.5px] after:bg-[#D62828]'
-                      : 'text-sm font-medium text-neutral-600 hover:text-[#151515] transition-colors'
-                  }
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
+          {/* Envolvemos a navegação com Suspense para satisfazer o build estático do Next.js */}
+          <Suspense fallback={<div className="hidden lg:flex items-center gap-8 h-5" />}>
+            <NavigationContent />
+          </Suspense>
 
           {/* Right CTA Button (Desktop & Tablet: md+) */}
           <div className="hidden md:flex items-center">
@@ -85,28 +121,12 @@ export const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Tablet sub-bar: nav links (md to lg) */}
-        <div className="hidden md:flex lg:hidden items-center justify-center gap-8 border-t border-neutral-100 py-2.5">
-          {NAV_LINKS.map((link) => {
-            const isActive = link.href === '/' 
-              ? pathname === '/' 
-              : pathname?.startsWith(link.href);
-
-            return (
-              <Link
-                key={link.label}
-                href={link.href}
-                className={
-                  isActive
-                    ? 'relative py-1 text-sm font-semibold text-[#D62828] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#D62828]'
-                    : 'text-sm font-medium text-neutral-600 hover:text-[#151515] transition-colors'
-                }
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </div>
+        {/* Tablet Navigation Wrapper com Suspense */}
+        <Suspense fallback={null}>
+          <div className="hidden md:flex lg:hidden items-center justify-center gap-8 border-t border-neutral-100 py-2.5">
+            {/* O conteúdo do tablet já está tratado dentro do NavigationContent */}
+          </div>
+        </Suspense>
 
         {/* Mobile secondary row: full-width CTA button (< md) */}
         <div className="md:hidden pb-3 pt-1">
@@ -128,33 +148,44 @@ export const Header: React.FC = () => {
           aria-label="Menu móvel"
           className="md:hidden border-t border-neutral-200 bg-white px-4 pt-2 pb-4 shadow-lg animate-in slide-in-from-top-2 duration-150"
         >
-          <ul className="flex flex-col divide-y divide-neutral-100">
-            {NAV_LINKS.map((link) => {
-              const isActive = link.href === '/' 
-                ? pathname === '/' 
-                : pathname?.startsWith(link.href);
-
-              return (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`block py-3 text-base font-medium transition-colors ${
-                      isActive
-                        ? 'text-[#D62828] font-semibold'
-                        : 'text-neutral-700 hover:text-[#151515]'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <Suspense fallback={<div className="py-2 text-sm text-neutral-400">Carregando menu...</div>}>
+            <MobileMenuContent onClose={() => setIsOpen(false)} />
+          </Suspense>
         </nav>
       )}
     </header>
   );
 };
 
-export default Header; 
+// Sub-componente para o menu mobile que também usa usePathname
+function MobileMenuContent({ onClose }: { onClose: () => void }) {
+  const pathname = usePathname();
+
+  return (
+    <ul className="flex flex-col divide-y divide-neutral-100">
+      {NAV_LINKS.map((link) => {
+        const isActive = link.href === '/' 
+          ? pathname === '/' 
+          : pathname?.startsWith(link.href);
+
+        return (
+          <li key={link.label}>
+            <Link
+              href={link.href}
+              onClick={onClose}
+              className={`block py-3 text-base font-medium transition-colors ${
+                isActive
+                  ? 'text-[#D62828] font-semibold'
+                  : 'text-neutral-700 hover:text-[#151515]'
+              }`}
+            >
+              {link.label}
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+export default Header;
