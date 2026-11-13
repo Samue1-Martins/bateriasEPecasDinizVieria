@@ -25,9 +25,9 @@ export const COMPANY_DETAILS: CompanyInfo = {
     "Agilidade na entrega e suporte",
   ],
   contact: {
-    phone: "(11) 99999-9999",
-    whatsapp: "5511999999999",
-    whatsappDisplay: "(11) 99999-9999",
+    phone: "(31)98801-2447",
+    whatsapp: "31988012447",
+    whatsappDisplay: "(31)  98801-2447",
     email: "contato@autopecasdinizvieira.com.br",
     address: {
       street: "Avenida Principal",
