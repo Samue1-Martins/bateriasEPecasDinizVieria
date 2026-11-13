@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Header } from '@/components/layout';
 import { Footer } from '@/components/layout';
 import { ProductCard } from '@/components/products';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Info, MessageCircle, AlertCircle } from 'lucide-react';
 import { buildWhatsAppLink } from '@/lib/constants';
