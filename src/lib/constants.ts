@@ -1,65 +1,65 @@
 import { CompanyInfo } from "@/types";
 
-export const BRAND_COLORS = {
-  black: "#151515",
-  white: "#FFFFFF",
-  red: "#D62828",
-  yellow: "#F4C542",
-  gray: "#F5F5F5",
-} as const;
+export const WHATSAPP_NUMBER = "5531988012447";
+export const WHATSAPP_DISPLAY = "+55 (31) 98801-2447";
+export const WORKING_HOURS = "08:00 às 18:00";
+
+/**
+ * Função centralizada para geração de links do WhatsApp.
+ * Utiliza o número oficial internacional: 5531988012447.
+ */
+export function buildWhatsAppLink(message: string): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+/**
+ * Mensagens padrão pré-formatadas para o WhatsApp.
+ */
+export const WHATSAPP_MESSAGES = {
+  general: "Olá! Gostaria de conhecer os produtos da Auto Peças Diniz Vieira.",
+  location: "Olá! Gostaria de consultar a localização da Auto Peças Diniz Vieira.",
+  contact: "Olá! Gostaria de falar sobre peças e serviços com a equipe da Auto Peças Diniz Vieira.",
+  productInquiry: (productName: string, productBrand?: string) =>
+    `Olá! Gostaria de consultar a disponibilidade do produto ${productName}${productBrand ? ` (${productBrand})` : ""}.`,
+};
 
 export const COMPANY_DETAILS: CompanyInfo = {
-  name: "Auto Peças Diniz Vieira Ltda.",
+  name: "Auto Peças Diniz Vieira",
   tradeName: "Auto Peças Diniz Vieira",
-  slogan: "Tradição e confiança em baterias e autopeças",
+  slogan: "Peças, cuidado e confiança. Loja e oficina lado a lado desde 2023.",
   history:
-    "Fundada com o compromisso de fornecer peças automotivas e baterias de alta qualidade, a Auto Peças Diniz Vieira consolidou-se como referência em atendimento técnico, honestidade e preços justos.",
+    "Tudo começou em 2023 com o sonho de oferecer um serviço cada vez mais completo aos nossos clientes. Ao lado da oficina, surgiu a ideia de abrir uma loja de autopeças, facilitando a vida de quem precisava de consertos, peças e baterias. Hoje, loja e oficina trabalham lado a lado, cuidando de cada veículo com dedicação.",
   mission:
-    "Oferecer as melhores soluções em peças automotivas e baterias, assegurando segurança, desempenho e atendimento ágil aos nossos clientes.",
+    "Oferecer produtos de qualidade e atendimento próximo e transparente, garantindo a tranquilidade e a segurança de cada motorista.",
   vision:
-    "Ser a principal referência regional no comércio de autopeças e baterias, reconhecida pela excelência no suporte ao cliente e catálogo diversificado.",
+    "Ser a loja e oficina de autopeças de maior confiança na região, reconhecida pelo atendimento técnico humanizado e pela agilidade.",
   values: [
-    "Compromisso com a qualidade",
-    "Transparência e honestidade",
-    "Atendimento consultivo e técnico",
-    "Agilidade na entrega e suporte",
+    "Confiança e transparência",
+    "Qualidade e procedência das peças",
+    "Cuidado lado a lado com o cliente",
+    "Responsabilidade e dedicação",
   ],
   contact: {
-    phone: "(31)98801-2447",
-    whatsapp: "31988012447",
-    whatsappDisplay: "(31)  98801-2447",
-    email: "contato@autopecasdinizvieira.com.br",
+    phone: WHATSAPP_DISPLAY,
+    whatsapp: WHATSAPP_NUMBER,
+    whatsappDisplay: WHATSAPP_DISPLAY,
+    email: "contato@dinizvieira.com.br", // informativo
     address: {
-      street: "Avenida Principal",
-      number: "1000",
-      neighborhood: "Centro",
-      city: "São Paulo",
-      state: "SP",
-      zipCode: "01000-000",
-      fullFormatted: "Av. Principal, 1000 - Centro, São Paulo - SP",
+      street: "",
+      number: "",
+      neighborhood: "",
+      city: "",
+      state: "MG",
+      zipCode: "",
+      fullFormatted: "Consulte nossa localização pelo WhatsApp",
     },
     workingHours: {
-      weekdays: "08:00 às 18:00",
-      saturday: "08:00 às 13:00",
-      sunday: "Fechado",
+      weekdays: WORKING_HOURS,
+      saturday: WORKING_HOURS,
+      sunday: "",
+    },
+    socialLinks: {
+      instagram: "https://instagram.com",
     },
   },
 };
-
-export const NAV_ITEMS = [
-  { label: "Início", href: "#inicio" },
-  { label: "Diferenciais", href: "#diferenciais" },
-  { label: "Categorias", href: "#categorias" },
-  { label: "Baterias & Peças", href: "#baterias" },
-  { label: "Sobre Nós", href: "#sobre" },
-  { label: "Contato", href: "#contato" },
-] as const;
-
-export function buildWhatsAppLink(
-  message: string,
-  phone: string = COMPANY_DETAILS.contact.whatsapp
-): string {
-  const cleanPhone = phone.replace(/\D/g, "");
-  const encodedMsg = encodeURIComponent(message);
-  return `https://wa.me/${cleanPhone}?text=${encodedMsg}`;
-}

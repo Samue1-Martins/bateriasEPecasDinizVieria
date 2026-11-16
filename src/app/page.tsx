@@ -1,15 +1,12 @@
 import React from "react";
 import { Header, Footer } from "@/components/layout";
-import { AboutSection, ContactSection } from "@/components/home";
-import { HeroSection } from "@/components/home";
+import {
+  HeroSection,
+  AboutSection,
+  ContactSection,
+} from "@/components/home";
 import { CategoriesSection } from "@/components/categories";
 import { FeaturedProductsSection } from "@/components/products";
-
-function getWhatsAppLink(message: string): string {
-  const phone = "31988012447"; 
-  const encoded = encodeURIComponent(message);
-  return `https://wa.me/${phone}?text=${encoded}`;
-}
 
 export default function HomePage() {
   return (
@@ -17,38 +14,23 @@ export default function HomePage() {
       <Header />
 
       <main className="flex-1">
-        {/* 1. Hero + Faixa de Benefícios rápidos */}
+        {/* 1. Hero + Diferenciais Rápidos */}
         <HeroSection />
 
         {/* 2. Categorias de produtos */}
         <CategoriesSection />
 
-        {/* 3. Produtos em destaque */}
+        {/* 3. Produtos em destaque (Consome getFeaturedProducts()) */}
         <FeaturedProductsSection />
 
+        {/* 4. História / Lado a Lado */}
         <AboutSection />
 
-        {/* 5️⃣ Seção de contato (nova) */}
-        <ContactSection
-          whatsappHref={getWhatsAppLink(
-            "Olá! Gostaria de consultar um produto."
-          )}
-          address="Endereço a informar"
-          phone="Telefone a informar"
-          hours="Horários a informar"
-        />
-
+        {/* 5. Seção de contato com localização neutra e WhatsApp */}
+        <ContactSection />
       </main>
 
-      <Footer
-        whatsappHref={getWhatsAppLink(
-          "Olá! Gostaria de consultar um produto."
-        )}
-        address="Endereço a informar"
-        phone="Telefone a informar"
-        hours="Horários a informar"
-      />
-
+      <Footer />
     </div>
   );
 }

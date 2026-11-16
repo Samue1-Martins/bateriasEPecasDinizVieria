@@ -1,22 +1,23 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
+import {
+  WHATSAPP_DISPLAY,
+  WORKING_HOURS,
+  buildWhatsAppLink,
+  WHATSAPP_MESSAGES,
+} from "@/lib/constants";
 
 type FooterProps = {
-  whatsappHref: string;
-  address?: string;
   phone?: string;
   hours?: string;
-  whatsappLabel?: string;
 };
 
 export function Footer({
-  whatsappHref,
-  address = "Endereço a informar",
-  phone = "Telefone a informar",
-  hours = "Horários a informar",
-  whatsappLabel = "WhatsApp · número a informar",
+  phone = WHATSAPP_DISPLAY,
+  hours = WORKING_HOURS,
 }: FooterProps) {
-  // const currentYear = new Date().getFullYear();
+  const currentYear = 2026;
+  const whatsappUrl = buildWhatsAppLink(WHATSAPP_MESSAGES.general);
 
   return (
     <footer className="relative w-full bg-[#151515] text-white">
@@ -49,7 +50,9 @@ export function Footer({
 
           {/* 2️⃣ Navegação */}
           <nav aria-label="Navegação do rodapé">
-            <h3 className="mb-2.5 text-[11px] font-bold text-white">Explore</h3>
+            <h3 className="mb-2.5 text-[11px] font-bold text-white uppercase tracking-wider">
+              Explore
+            </h3>
             <ul className="flex flex-col gap-2.5">
               <li>
                 <Link
@@ -80,48 +83,59 @@ export function Footer({
 
           {/* 3️⃣ Contato */}
           <div>
-            <h3 className="mb-2.5 text-[11px] font-bold text-white">Conte com nossa equipe</h3>
+            <h3 className="mb-2.5 text-[11px] font-bold text-white uppercase tracking-wider">
+              Conte com nossa equipe
+            </h3>
             <ul className="flex flex-col gap-2.5 text-[11px]">
-              <li className="text-neutral-400">{address}</li>
-              <li className="text-neutral-400">{phone}</li>
-              <li className="text-neutral-400">{hours}</li>
-              <li className="font-semibold text-white">{whatsappLabel}</li>
+              <li className="text-neutral-400">
+                Horário: {hours}
+              </li>
+              <li className="text-neutral-400">
+                Atendimento presencial e online
+              </li>
+              <li className="font-semibold text-white flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                WhatsApp: {phone}
+              </li>
             </ul>
           </div>
+
         </div>
 
-        {/* Divider & copyright */}
-        <div className="mt-8 border-t border-white/10 pt-7 text-center">
+        {/* Divisor */}
+        <div className="mt-8 border-t border-white/10 pt-7">
           <p className="text-[10px] text-neutral-400">
-            © 2026 Auto Peças Diniz Vieira. Todos os direitos reservados.
+            © {currentYear} Auto Peças Diniz Vieira. Todos os direitos reservados.
           </p>
         </div>
       </div>
 
       {/* === Botão WhatsApp – desktop (flutuante) === */}
       <a
-        href={whatsappHref}
+        href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Fale conosco pelo WhatsApp"
-        className="hidden md:inline-flex absolute right-4 bottom-4 items-center gap-2 rounded-full bg-[#D62828] px-5 py-2 text-[11px] font-semibold text-white transition-colors hover:bg-[#B91F1F] hover:shadow-lg"
+        className="fixed bottom-6 right-6 z-40 hidden md:inline-flex h-[44px] items-center gap-2 rounded-full bg-[#D62828] px-5 text-xs font-bold text-white shadow-lg hover:bg-[#b91c1c] active:translate-y-px transition-all"
       >
-        <MessageCircle size={17} strokeWidth={1.8} />
+        <MessageCircle size={18} strokeWidth={2} />
         WhatsApp
       </a>
 
       {/* === Botão WhatsApp – mobile (centralizado) === */}
-      <div className="md:hidden mt-6 text-center">
+      <div className="px-4 pb-6 md:hidden">
         <a
-          href={whatsappHref}
+          href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-[#D62828] px-5 py-2 text-[11px] font-semibold text-white transition-colors hover:bg-[#B91F1F]"
+          className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#D62828] text-xs font-bold text-white hover:bg-[#b91c1c] transition-colors"
         >
-          <MessageCircle size={17} />
+          <MessageCircle size={18} />
           WhatsApp
         </a>
       </div>
     </footer>
   );
 }
+
+export default Footer;

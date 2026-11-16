@@ -1,12 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import { ShieldCheck, Package, MessageSquareText, Wrench } from "lucide-react";
-import { buildWhatsAppLink } from "@/lib/constants";
+import { ShieldCheck, Package } from "lucide-react";
+import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/constants";
 
 export function HeroSection() {
-  const whatsappUrl = buildWhatsAppLink(
-    "Olá! Gostaria de falar sobre peças e serviços na Auto Peças Diniz Vieira."
-  );
+  const whatsappUrl = buildWhatsAppLink(WHATSAPP_MESSAGES.contact);
 
   return (
     <section id="inicio" className="bg-white">
@@ -37,7 +35,7 @@ export function HeroSection() {
             {/* Ações / Botões */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
-                href="#produtos"
+                href="#destaques"
                 className="inline-flex items-center justify-center rounded-lg bg-[#D62828] px-6 py-3.5 text-sm font-bold text-white shadow-xs hover:bg-[#b91c1c] active:translate-y-px transition-all"
               >
                 Conheça nossos produtos
@@ -63,7 +61,7 @@ export function HeroSection() {
           <div className="lg:col-span-6">
             <div className="relative overflow-hidden rounded-2xl shadow-sm border border-neutral-200/80 bg-neutral-100">
               <Image
-                src="/imagem.webp"
+                src="/images/general/workshop-hero.webp"
                 alt="Mecânico trabalhando em oficina automotiva"
                 width={800}
                 height={520}
@@ -72,7 +70,7 @@ export function HeroSection() {
               />
             </div>
             <p className="text-[11px] text-neutral-400 mt-2 text-right lg:text-left">
-              Imagem ilustrativa de oficina. Não retrata a loja real.
+              Imagem ilustrativa de oficina. Não retrata a loja física real.
             </p>
           </div>
         </div>
@@ -100,14 +98,14 @@ export function HeroSection() {
             {/* Item 2 */}
             <div className="flex items-start gap-3.5">
               <div className="text-[#D62828] mt-0.5 shrink-0">
-                <MessageSquareText className="w-5 h-5" />
+                <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
                 <h3 className="text-sm font-bold text-[#151515]">
                   Atendimento de confiança
                 </h3>
                 <p className="text-xs text-neutral-600 mt-0.5">
-                  Orientação próxima, sem complicação.
+                  Orientação honesta, sem complicações.
                 </p>
               </div>
             </div>
@@ -115,11 +113,11 @@ export function HeroSection() {
             {/* Item 3 */}
             <div className="flex items-start gap-3.5">
               <div className="text-[#D62828] mt-0.5 shrink-0">
-                <Wrench className="w-5 h-5" />
+                <Package className="w-5 h-5" />
               </div>
               <div>
                 <h3 className="text-sm font-bold text-[#151515]">
-                  Loja + oficina
+                  Loja e oficina
                 </h3>
                 <p className="text-xs text-neutral-600 mt-0.5">
                   Mais praticidade em um só lugar.

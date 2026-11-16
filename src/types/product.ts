@@ -1,23 +1,30 @@
+export type ProductStatus =
+  | "in_stock"
+  | "on_demand"
+  | "out_of_stock";
+
 export interface ProductSpecification {
-  name: string;
+  label: string;
   value: string;
 }
 
 export interface Product {
   id: string;
   name: string;
-  sku?: string;
+  slug: string;
   description: string;
+  brand: string;
   categoryId: string;
-  categoryName?: string;
-  price?: number;
-  promotionalPrice?: number;
-  imageUrl?: string;
-  inStock: boolean;
-  featured?: boolean;
-  brand?: string;
-  compatibility?: string[];
-  specifications?: ProductSpecification[];
+  code?: string;
+  price: number | null;
+  priceOnRequest: boolean;
+  status: ProductStatus;
+  active: boolean;
+  featured: boolean;
+  mainImageUrl: string;
+  galleryUrls: string[];
+  specifications: ProductSpecification[];
+  vehicleApplications: string[];
   createdAt?: string;
   updatedAt?: string;
 }
@@ -25,6 +32,7 @@ export interface Product {
 export interface ProductFilter {
   categoryId?: string;
   searchTerm?: string;
-  inStockOnly?: boolean;
+  status?: ProductStatus;
   featuredOnly?: boolean;
+  sortBy?: "relevance" | "price_asc" | "price_desc" | "name_asc";
 }

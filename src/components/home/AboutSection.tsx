@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export function AboutSection() {
   return (
@@ -11,7 +11,7 @@ export function AboutSection() {
           <div className="lg:col-span-5">
             <div className="relative overflow-hidden rounded-2xl shadow-sm border border-neutral-200/80 bg-neutral-100">
               <Image
-                src="/imagem.webp"
+                src="/images/general/history-mechanic.webp"
                 alt="História da Auto Peças Diniz Vieira"
                 width={800}
                 height={600}
@@ -19,7 +19,7 @@ export function AboutSection() {
               />
             </div>
             <p className="text-[11px] text-neutral-400 mt-2 text-right lg:text-left">
-              Imagem ilustrativa. Não retrata a loja real.
+              Imagem ilustrativa. Não retrata a loja física real.
             </p>
           </div>
 

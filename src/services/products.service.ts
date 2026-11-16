@@ -1,121 +1,105 @@
-import { Category, Product } from "@/types";
-
-// Initial mock data simulating catalog structure until Firebase is connected
-const MOCK_CATEGORIES: Category[] = [
-  {
-    id: "cat-baterias",
-    name: "Baterias Automotivas",
-    slug: "baterias-automotivas",
-    description: "Baterias para carros de passeio, utilitários, motos e veículos pesados.",
-    active: true,
-    order: 1,
-  },
-  {
-    id: "cat-freios",
-    name: "Sistema de Freios",
-    slug: "sistema-de-freios",
-    description: "Pastilhas, discos, lonas, tambores e fluidos para segurança total.",
-    active: true,
-    order: 2,
-  },
-  {
-    id: "cat-suspensao",
-    name: "Suspensão & Direção",
-    slug: "suspensao-e-direcao",
-    description: "Amortecedores, molas, pivôs, terminais e buchas.",
-    active: true,
-    order: 3,
-  },
-  {
-    id: "cat-motor",
-    name: "Motor & Injeção",
-    slug: "motor-e-injecao",
-    description: "Filtros, velas, correias, bombas e componentes de injeção eletrônica.",
-    active: true,
-    order: 4,
-  },
-];
-
-const MOCK_PRODUCTS: Product[] = [
-  {
-    id: "prod-1",
-    name: "Bateria Automotiva 60Ah Selada",
-    sku: "BAT-60AH-01",
-    description: "Alta durabilidade, livre de manutenção, garantia estendida de 18 meses.",
-    categoryId: "cat-baterias",
-    categoryName: "Baterias Automotivas",
-    price: 420.0,
-    inStock: true,
-    featured: true,
-    brand: "Linha Premium",
-    specifications: [
-      { name: "Amperagem", value: "60 Ah" },
-      { name: "Tensão", value: "12V" },
-      { name: "Garantia", value: "18 meses" },
-    ],
-  },
-  {
-    id: "prod-2",
-    name: "Jogo de Pastilhas de Freio Dianteiro",
-    sku: "FRE-PAS-02",
-    description: "Composto cerâmico de alto rendimento, menor desgaste e frenagem silenciosa.",
-    categoryId: "cat-freios",
-    categoryName: "Sistema de Freios",
-    price: 185.0,
-    inStock: true,
-    featured: true,
-    brand: "Top Brake",
-    specifications: [
-      { name: "Posição", value: "Dianteira" },
-      { name: "Material", value: "Semi-metálica" },
-    ],
-  },
-  {
-    id: "prod-3",
-    name: "Kit Amortecedor Dianteiro com Coxim",
-    sku: "SUS-AMO-03",
-    description: "Pressurizado a gás, maior estabilidade e conforto em todos os terrenos.",
-    categoryId: "cat-suspensao",
-    categoryName: "Suspensão & Direção",
-    price: 360.0,
-    inStock: true,
-    featured: true,
-    brand: "Max Ride",
-    specifications: [
-      { name: "Tipo", value: "Pressurizado a gás" },
-      { name: "Garantia", value: "24 meses" },
-    ],
-  },
-  {
-    id: "prod-4",
-    name: "Kit Filtros de Óleo, Ar e Combustível",
-    sku: "MOT-FIL-04",
-    description: "Filtração de alta eficiência para proteção e performance do motor.",
-    categoryId: "cat-motor",
-    categoryName: "Motor & Injeção",
-    price: 130.0,
-    inStock: true,
-    featured: true,
-    brand: "FilterPro",
-    specifications: [
-      { name: "Aplicação", value: "Linha Leve Flex" },
-      { name: "Itens", value: "3 Filtros" },
-    ],
-  },
-];
+import { Category, Product, ProductFilter } from "@/types";
+import { DEMO_CATEGORIES, DEMO_PRODUCTS } from "@/data";
 
 /**
- * Service abstraction layer.
- * In future phases, these methods will read directly from Firebase Firestore.
+ * Camada de abstração de serviços de produtos e categorias.
+ * Atualmente consome os dados demonstrativos de src/data/.
+ * Futuramente esses métodos consultarão diretamente o Cloud Firestore.
  */
+
 export async function getCategories(): Promise<Category[]> {
-  return MOCK_CATEGORIES.filter((c) => c.active).sort((a, b) => a.order - b.order);
+  return DEMO_CATEGORIES.filter((c) => c.active).sort((a, b) => a.order - b.order);
+}
+
+export async function getCategoryById(id: string): Promise<Category | null> {
+  const category = DEMO_CATEGORIES.find((c) => c.id === id && c.active);
+  return category || null;
+}
+
+export async function getCategoryBySlug(slug: string): Promise<Category | null> {
+  const category = DEMO_CATEGORIES.find((c) => c.slug === slug && c.active);
+  return category || null;
+}
+
+export async function getProducts(filter?: ProductFilter): Promise<Product[]> {
+  let products = DEMO_PRODUCTS.filter((p) => p.active);
+
+  if (!filter) {
+    return products;
+  }
+
+  if (filter.categoryId && filter.categoryId !== "todos") {
+    products = products.filter((p) => p.categoryId === filter.categoryId);
+  }
+
+  if (filter.searchTerm && filter.searchTerm.trim() !== "") {
+    const term = filter.searchTerm.toLowerCase().trim();
+    products = products.filter(
+      (p) =>
+        p.name.toLowerCase().includes(term) ||
+        p.brand.toLowerCase().includes(term) ||
+        (p.code && p.code.toLowerCase().includes(term)) ||
+        p.description.toLowerCase().includes(term)
+    );
+  }
+
+  if (filter.status) {
+    products = products.filter((p) => p.status === filter.status);
+  }
+
+  if (filter.featuredOnly) {
+    products = products.filter((p) => p.featured);
+  }
+
+  if (filter.sortBy) {
+    switch (filter.sortBy) {
+      case "price_asc":
+        products.sort((a, b) => {
+          if (a.price === null) return 1;
+          if (b.price === null) return -1;
+          return a.price - b.price;
+        });
+        break;
+      case "price_desc":
+        products.sort((a, b) => {
+          if (a.price === null) return 1;
+          if (b.price === null) return -1;
+          return b.price - a.price;
+        });
+        break;
+      case "name_asc":
+        products.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case "relevance":
+      default:
+        // Mantém ordenação padrão
+        break;
+    }
+  }
+
+  return products;
 }
 
 export async function getFeaturedProducts(): Promise<Product[]> {
-  return MOCK_PRODUCTS.filter((p) => p.featured);
+  return DEMO_PRODUCTS.filter((p) => p.active && p.featured);
 }
 
-export async function getProductsByCategory(categoryId: string): Promise<Product[]> {
-  return MOCK_PRODUCTS.filter((p) => p.categoryId === categoryId);
+export async function getProductBySlug(slug: string): Promise<Product | null> {
+  const product = DEMO_PRODUCTS.find((p) => p.slug === slug && p.active);
+  return product || null;
+}
+
+export async function getProductById(id: string): Promise<Product | null> {
+  const product = DEMO_PRODUCTS.find((p) => p.id === id && p.active);
+  return product || null;
+}
+
+export async function getRelatedProducts(
+  categoryId: string,
+  currentProductId: string,
+  limit = 3
+): Promise<Product[]> {
+  return DEMO_PRODUCTS.filter(
+    (p) => p.active && p.categoryId === categoryId && p.id !== currentProductId
+  ).slice(0, limit);
 }

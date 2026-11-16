@@ -1,137 +1,96 @@
-# Auto Peças Diniz Vieira — Portal Institucional & Catálogo
+# Auto Peças Diniz Vieira
 
-Site institucional e catálogo público de produtos e baterias automotivas para a **Auto Peças Diniz Vieira**, com direcionamento de clientes para atendimento consultivo via WhatsApp.
-
----
-
-## 🛠 Tecnologias Utilizadas
-
-- **[Next.js](https://nextjs.org/)** (v16.4.5) — Framework React com App Router e Server Components.
-- **[React](https://react.dev/)** (v19.3.0) — Biblioteca para construção de interfaces reativas.
-- **[TypeScript](https://www.typescriptlang.org/)** (v5) — Tipagem estática rigorosa para escalabilidade e segurança.
-- **[Tailwind CSS](https://tailwindcss.com/)** (v4) — Framework de estilização baseado em classes utilitárias e variáveis semânticas.
-- **[shadcn/ui](https://ui.shadcn.com/)** (v4) — Coleção de componentes acessíveis e customizáveis baseados em `@base-ui/react`.
-- **[Lucide React](https://lucide.dev/)** — Biblioteca moderna de ícones vetoriais.
-- **[ESLint](https://eslint.org/)** (v9) — Padronização de código e garantia de boas práticas.
-- **Firebase** *(Próxima etapa)* — Integração planejada para armazenamento de dados do catálogo e imagens via Firestore / Storage.
+Site institucional e catálogo público de autopeças e baterias com direcionamento consultivo para atendimento via WhatsApp.
 
 ---
 
-## 🎨 Identidade Visual & Design System
-
-### Paleta de Cores Oficial
-
-| Cor | Hex | Token Tailwind | Variável Semântica shadcn/ui | Utilização |
-| :--- | :--- | :--- | :--- | :--- |
-| **Preto** | `#151515` | `bg-brand-black` / `text-brand-black` | `--foreground` | Textos e elementos de destaque |
-| **Branco** | `#FFFFFF` | `bg-brand-white` / `text-brand-white` | `--background`, `--card` | Fundo principal da aplicação |
-| **Vermelho** | `#D62828` | `bg-brand-red` / `text-brand-red` | `--primary`, `--ring` | Botões e ações principais (CTA) |
-| **Amarelo** | `#F4C542` | `bg-brand-yellow` / `text-brand-yellow` | `--secondary`, `--accent` | Destaques, badges e etiquetas |
-| **Cinza Claro** | `#F5F5F5` | `bg-brand-gray` / `text-brand-gray` | `--muted` | Fundos secundários e cartões |
-
-### Tipografia
-- Fonte principal: **Manrope** (pesos 400 a 800 carregados via `next/font/google` com display `swap` e fallbacks de sistema).
+## 🛠️ Tecnologias Utilizadas
+- **Framework:** Next.js 16 (App Router com suporte a Partial Prerendering)
+- **Biblioteca Base:** React 19 / React DOM 19
+- **Linguagem:** TypeScript 5
+- **Estilização:** Tailwind CSS v4 & shadcn/ui
+- **Ícones:** Lucide React
+- **Tipografia:** Manrope
+- **Qualidade de Código:** ESLint 9 & TypeScript Compiler
 
 ---
 
-## 🧩 Componentes de Interface (shadcn/ui)
-
-Componentes instalados e centralizados em `src/components/ui`:
-- **Button:** Variantes `default` (vermelho), `secondary` (amarelo), `outline`, `whatsapp`, `destructive`, `ghost` e tamanhos `sm`, `default`, `lg`.
-- **Card:** `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`.
-- **Badge:** Etiquetas semânticas com suporte a variantes `default`, `secondary`, `outline`, `dark` e `gray`.
-- **Input:** Campo de entrada com foco tematizado na identidade da marca.
-- **Separator:** Divisor horizontal e vertical acessível.
-
-### Ícones Padronizados (Lucide React)
-- `Wrench` — Serviços, oficina e ferramentas.
-- `BatteryCharging` — Baterias e sistema elétrico.
-- `Droplet` — Óleos, lubrificantes e fluidos.
-- `Search` — Busca e filtros de catálogo.
-- `Phone` — Telefonia e contato direto.
-- `ArrowRight` — Navegação e direcionamento.
-
----
-
-## 📋 Pré-requisitos
-
-Antes de iniciar, certifique-se de possuir em seu ambiente:
-
-- **Node.js**: versão `18.18+` ou `20+` (desenvolvido e testado no Node `v25.8.0`).
-- **npm**: versão `9+` ou `11+` (ou gerenciador compatível).
-- **Git** instalado.
-
----
-
-## 🚀 Instalação e Execução
-
-### 1. Clonar ou acessar o repositório
-```bash
-git clone <url-do-repositorio>
-cd bateriasEPecasDinizVieria
-```
-
-### 2. Instalar as dependências
-```bash
-npm install
-```
-
-### 3. Executar o servidor de desenvolvimento
-```bash
-npm run dev
-```
-
-Abra [http://localhost:3000](http://localhost:3000) no navegador para visualizar a aplicação.
-
-### 4. Guia Visual / Teste de Componentes
-Acesse a rota interna de desenvolvimento:
-```
-http://localhost:3000/ui-preview
-```
-*(Esta rota é restrita a homologação visual e não é exibida na navegação pública).*
-
----
-
-## 💻 Comandos Disponíveis
-
-| Comando | Descrição |
-| :--- | :--- |
-| `npm run dev` | Inicia o servidor local de desenvolvimento na porta `3000`. |
-| `npm run build` | Compila e gera o build otimizado de produção. |
-| `npm run start` | Inicia o servidor de produção local após o build. |
-| `npm run lint` | Executa a verificação estática do ESLint no código fonte. |
-| `npx tsc --noEmit` | Valida todos os tipos TypeScript sem gerar arquivos de saída. |
-
----
-
-## 📂 Estrutura de Pastas
+## 📁 Estrutura de Arquitetura
 
 ```text
-bateriasEPecasDinizVieria/
-├── public/                 # Arquivos estáticos públicos
-├── src/
-│   ├── app/                # App Router do Next.js
-│   │   ├── ui-preview/     # Página de testes visuais e Design System (/ui-preview)
-│   │   ├── favicon.ico     # Ícone da aplicação
-│   │   ├── globals.css     # Estilos globais e tokens semânticos do shadcn/Tailwind v4
-│   │   ├── layout.tsx      # Layout raiz com configuração global da fonte Manrope
-│   │   └── page.tsx        # Página inicial provisória com validação visual
-│   │
-│   ├── components/         # Componentes React reutilizáveis
-│   │   ├── categories/     # Componentes de exibição de categorias
-│   │   ├── layout/         # Componentes estruturais (Header, Footer)
-│   │   ├── products/       # Componentes de produtos (ProductCard)
-│   │   └── ui/             # Primitivos shadcn/ui (Button, Card, Badge, Input, Separator)
-│   │
-│   ├── lib/                # Constantes, dados institucionais e utilitários (cn, formatCurrency)
-│   ├── services/           # Camada de serviços preparada para Firebase
-│   ├── types/              # Interfaces TypeScript de produtos, categorias e empresa
-│   └── assets/             # Mapeamento de recursos gráficos
-│
-├── components.json         # Configuração oficial do shadcn/ui
-├── eslint.config.mjs       # Configuração do ESLint 9
-├── next.config.ts          # Configurações do Next.js
-├── package.json            # Metadados e dependências do projeto
-├── README.md               # Documentação principal do projeto
-└── tsconfig.json           # Configuração TypeScript e alias `@/*`
+src/
+├── app/
+│   ├── layout.tsx              # Layout raiz com fontes e metadados
+│   ├── page.tsx                # Página Inicial (Landing Page completa)
+│   ├── about/page.tsx          # Página Quem Somos
+│   ├── catalog/
+│   │   ├── page.tsx            # Catálogo Público (Server Component)
+│   │   └── CatalogContent.tsx  # Busca, filtros de categoria e ordenação (Client Component)
+│   └── catalog/[slug]/
+│       ├── page.tsx            # Detalhes do Produto (generateStaticParams + SSR)
+│       └── ProductGallery.tsx  # Galeria com troca interativa de fotos
+├── components/
+│   ├── ui/                     # Primitivos shadcn/ui (Button, card, input, etc.)
+│   ├── layout/                 # Header e Footer institucionais
+│   ├── home/                   # HeroSection, AboutSection, ContactSection
+│   ├── categories/             # CategoryCard e CategoriesSection
+│   └── products/               # ProductCard e FeaturedProductsSection
+├── data/
+│   ├── demo-categories.ts      # 7 categorias demonstrativas
+│   ├── demo-products.ts        # 13 produtos demonstrativos completos
+│   └── index.ts
+├── services/
+│   └── products.service.ts     # Camada de abstração de dados (preparada para Firebase)
+├── types/
+│   ├── product.ts              # Contrato de dados de Produto e Filtros
+│   ├── category.ts             # Contrato de dados de Categoria
+│   └── company.ts              # Informações institucionais da empresa
+└── lib/
+    ├── constants.ts            # Centralizador do WhatsApp oficial e dados da empresa
+    └── utils.ts                # Helper cn (clsx + tailwind-merge)
+```
+
+---
+
+## 📱 Centralização do WhatsApp
+Todo o fluxo de contato com a empresa utiliza o número oficial único:
+- **Número Internacional:** `5531988012447`
+- **Exibição:** `+55 (31) 98801-2447`
+- **Helper Centralizado:** `buildWhatsAppLink(message)` em `src/lib/constants.ts`
+- **Mensagens dinâmicas:** `WHATSAPP_MESSAGES.productInquiry(nome, marca)` gera o texto contextualizado por produto.
+
+---
+
+## 📦 Catálogo Demonstrativo e Avisos
+O projeto conta com 13 produtos distribuídos nas 7 categorias oficiais. Como os preços, especificações e estoque são fictícios para homologação da interface, todos os pontos de contato exibem um aviso visual transparente ao visitante:
+> *"Catálogo demonstrativo. Produtos, preços e disponibilidade são ilustrativos. Consulte nossa equipe pelo WhatsApp para confirmar as informações reais."*
+
+---
+
+## 🖼️ Organização de Imagens e Ativos Locais
+- Imagens institucionais: `public/images/general/`
+- Imagens de produtos: `public/images/products/`
+- Documentação de licenças e fontes: `public/images/ASSET_SOURCES.md`
+
+---
+
+## 🚀 Preparação para Integração Futura com Firebase
+A camada `src/services/products.service.ts` atua como uma interface agnóstica (`getCategories`, `getProducts`, `getProductBySlug`, `getFeaturedProducts`, `getRelatedProducts`). 
+Para conectar o **Cloud Firestore** na próxima etapa, bastará apontar esses métodos para as coleções correspondentes sem necessidade de alterar as páginas e componentes visuais.
+
+---
+
+## 🧪 Scripts Disponíveis
+```bash
+# Executar em modo desenvolvimento
+npm run dev
+
+# Validação de código com ESLint
+npm run lint
+
+# Checagem estrita de tipos TypeScript
+npx tsc --noEmit
+
+# Compilação otimizada de produção
+npm run build
 ```
