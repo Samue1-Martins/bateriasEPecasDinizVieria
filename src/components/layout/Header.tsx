@@ -8,8 +8,8 @@ import { buildWhatsAppLink } from '@/lib/constants';
 
 const NAV_LINKS = [
   { label: 'Inicial', href: '/' },
-  { label: 'Quem Somos', href: '/quem-somos' },
-  { label: 'Catálogo', href: '/catalogo' },
+  { label: 'Quem Somos', href: '/about' },
+  { label: 'Catálogo', href: '/catalog' },
 ] as const;
 
 // Componente interno que consome o usePathname
@@ -73,7 +73,7 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-neutral-200 shadow-xs">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
         {/* Top bar */}
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}

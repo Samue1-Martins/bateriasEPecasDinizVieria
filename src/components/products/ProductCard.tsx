@@ -93,7 +93,7 @@ export function ProductCard({
           <div className="flex flex-col gap-2">
             {/* Botão Ver Detalhes com roteamento */}
             <Link
-              href={`/catalogo/${id}`}
+              href={`/catalog/${id}`}
               className="flex w-full items-center justify-center rounded-lg border border-neutral-200 bg-white py-2.5 px-4 text-xs sm:text-sm font-semibold text-[#151515] shadow-xs hover:bg-neutral-50 active:translate-y-px transition-all"
             >
               Ver detalhes

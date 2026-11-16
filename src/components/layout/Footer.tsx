@@ -21,7 +21,7 @@ export function Footer({
   return (
     <footer className="relative w-full bg-[#151515] text-white">
       {/* === Main content – 3 columns === */}
-      <div className="mx-auto max-w-7xl px-4 py-12 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1360px] px-4 py-12 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
 
           {/* 1️⃣ Logotipo textual + descrição */}
@@ -61,7 +61,7 @@ export function Footer({
               </li>
               <li>
                 <Link
-                  href="/quem-somos"
+                  href="/about"
                   className="text-[11px] text-neutral-400 transition-colors hover:text-white"
                 >
                   Quem Somos
@@ -69,7 +69,7 @@ export function Footer({
               </li>
               <li>
                 <Link
-                  href="/catalogo"
+                  href="/catalog"
                   className="text-[11px] text-neutral-400 transition-colors hover:text-white"
                 >
                   Catálogo

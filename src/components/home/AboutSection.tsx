@@ -1,42 +1,63 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
-// AboutSection – left image, right text
 export function AboutSection() {
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
-        {/* Left side image */}
-        <div className="w-full md:w-1/2 mb-8 md:mb-0">
-          {/* Placeholder image – replace with actual about image */}
-          <Image
-            src="/imagem.webp"
-            alt="About the company"
-            width={800}
-            height={600}
-            className="rounded-lg object-cover w-full h-auto"
-          />
-        </div>
-        {/* Right side text */}
-        
-        <div className="w-full md:w-1/2 md:pl-12">
-        <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D62828]" />
-            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#D62828]">
-              JUNTOS DESDE 2013
-            </span>
+    <section className="py-16 sm:py-24 bg-white border-t border-neutral-100">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          {/* Left side image */}
+          <div className="lg:col-span-5">
+            <div className="relative overflow-hidden rounded-2xl shadow-sm border border-neutral-200/80 bg-neutral-100">
+              <Image
+                src="/imagem.webp"
+                alt="História da Auto Peças Diniz Vieira"
+                width={800}
+                height={600}
+                className="w-full h-auto object-cover max-h-[500px]"
+              />
+            </div>
+            <p className="text-[11px] text-neutral-400 mt-2 text-right lg:text-left">
+              Imagem ilustrativa. Não retrata a loja real.
+            </p>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            Nossa história, nosso compromisso.
-          </h2>
-          <p className="text-base text-gray-700 leading-relaxed mb-4">
-            Tudo começou em 2023 com o sonho de oferecer um serviço cada vez mais completo aos nossos clientes. Ao lado da oficina, surgiu a ideia de abrir uma loja de autopeças, facilitando a vida de quem precisava de consertos, peças e baterias.
-          </p>
-          <p className="text-base text-gray-700 leading-relaxed mb-4">
-            Percebemos que muitos clientes precisavam procurar peças em outros lugares depois de identificar um problema no veículo. Decidimos então unir a oficina à loja, trazendo mais praticidade, agilidade e confiança.
-          </p>
-          <p className="text-base text-gray-700 leading-relaxed">
-            Hoje, loja e oficina trabalham lado a lado, compartilhando o compromisso de cuidar de cada veículo com responsabilidade, dedicação e respeito aos nossos clientes.
-          </p>
+
+          {/* Right side text */}
+          <div className="lg:col-span-7 flex flex-col gap-4">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D62828]" />
+              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#D62828]">
+                JUNTOS DESDE 2023
+              </span>
+            </div>
+
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#151515] tracking-tight">
+              Nossa história, nosso compromisso.
+            </h2>
+
+            <div className="space-y-4 text-sm sm:text-base text-neutral-600 leading-relaxed pt-1">
+              <p>
+                Tudo começou em 2023 com o sonho de oferecer um serviço cada vez mais completo aos nossos clientes. Ao lado da oficina, surgiu a ideia de abrir uma loja de autopeças, facilitando a vida de quem precisava de consertos, peças e baterias.
+              </p>
+              <p>
+                Percebemos que muitos clientes precisavam procurar peças em outros lugares depois de identificar um problema no veículo. Decidimos então unir a oficina à loja, trazendo mais praticidade, agilidade e confiança.
+              </p>
+              <p>
+                Hoje, loja e oficina trabalham lado a lado, compartilhando o compromisso de cuidar de cada veículo com responsabilidade, dedicação e respeito aos nossos clientes.
+              </p>
+            </div>
+
+            <div className="pt-2">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#D62828] hover:text-[#b91c1c] transition-colors"
+              >
+                <span>Conheça nossa história</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>

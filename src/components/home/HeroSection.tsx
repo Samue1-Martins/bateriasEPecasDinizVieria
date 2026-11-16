@@ -11,8 +11,8 @@ export function HeroSection() {
   return (
     <section id="inicio" className="bg-white">
       {/* Bloco Hero Principal */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 lg:pt-14 lg:pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 lg:pt-16 lg:pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Coluna de Textos */}
           <div className="lg:col-span-6 space-y-6">
             {/* Tag / Eyebrow */}
@@ -24,7 +24,7 @@ export function HeroSection() {
             </div>
 
             {/* Título Principal */}
-            <h1 className="text-3xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-[#151515] tracking-tight leading-[1.15]">
+            <h1 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-[#151515] tracking-tight leading-[1.12]">
               Tudo o que seu veículo precisa, em um só lugar.
             </h1>
 
@@ -38,7 +38,7 @@ export function HeroSection() {
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
                 href="#produtos"
-                className="inline-flex items-center justify-center rounded-lg bg-[#D62828] px-5 py-3 text-sm font-bold text-white shadow-xs hover:bg-[#b91c1c] active:translate-y-px transition-all"
+                className="inline-flex items-center justify-center rounded-lg bg-[#D62828] px-6 py-3.5 text-sm font-bold text-white shadow-xs hover:bg-[#b91c1c] active:translate-y-px transition-all"
               >
                 Conheça nossos produtos
               </a>
@@ -46,7 +46,7 @@ export function HeroSection() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-lg border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-[#151515] shadow-xs hover:bg-neutral-50 active:translate-y-px transition-all"
+                className="inline-flex items-center justify-center rounded-lg border border-neutral-300 bg-white px-6 py-3.5 text-sm font-semibold text-[#151515] shadow-xs hover:bg-neutral-50 active:translate-y-px transition-all"
               >
                 Fale conosco
               </a>
@@ -68,7 +68,7 @@ export function HeroSection() {
                 width={800}
                 height={520}
                 priority
-                className="w-full h-auto object-cover max-h-[460px]"
+                className="w-full h-auto object-cover max-h-[520px]"
               />
             </div>
             <p className="text-[11px] text-neutral-400 mt-2 text-right lg:text-left">
@@ -79,8 +79,8 @@ export function HeroSection() {
       </div>
 
       {/* Faixa Inferior de Diferenciais / Benefícios Rápidos */}
-      <div className="border-t border-neutral-200 bg-[#FAFAFA] py-6 sm:py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="border-t border-neutral-200 bg-[#FAFAFA] py-8 sm:py-10">
+        <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {/* Item 1 */}
             <div className="flex items-start gap-3.5">

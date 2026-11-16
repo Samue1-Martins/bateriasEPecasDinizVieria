@@ -81,10 +81,10 @@ export function CategoryCard({ category }: { category: CategoryItem }) {
 
 export function CategoriesSection() {
   return (
-    <section id="categorias" className="py-12 sm:py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="categorias" className="py-14 sm:py-20 bg-white">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header da Seção */}
-        <div className="space-y-3 mb-8 sm:mb-10">
+        <div className="space-y-3 mb-10 sm:mb-12">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#D62828]" />
             <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#D62828]">

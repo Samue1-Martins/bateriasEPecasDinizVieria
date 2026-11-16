@@ -75,18 +75,18 @@ export function ContactSection({
     <section
       id="contato"
       aria-labelledby="contact-heading"
-      className="w-full bg-[#F5F5F5] px-5 py-14 md:px-10 md:py-16 lg:px-[70px]"
+      className="w-full bg-[#F5F5F5] px-4 py-16 sm:py-20 md:px-6 lg:px-8 border-t border-neutral-200/60"
     >
-      <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
+      <div className="mx-auto grid max-w-[1360px] grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14 lg:gap-16">
         {/* Coluna esquerda – informações */}
         <div className="flex flex-col items-start">
           <h2
             id="contact-heading"
-            className="max-w-[470px] text-[28px] font-bold leading-[1.15] tracking-[-0.035em] text-[#151515] md:text-[30px]"
+            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#151515] tracking-tight leading-tight"
           >
             Precisando de uma peça para seu veículo?
           </h2>
-          <p className="mt-3 max-w-[470px] text-[13px] leading-[1.6] text-neutral-600">
+          <p className="mt-3 text-base sm:text-lg text-neutral-600 leading-relaxed max-w-xl">
             Consulte a disponibilidade e tire suas dúvidas. Estamos aqui para ajudar você a encontrar a peça certa.
           </p>
 
@@ -95,14 +95,14 @@ export function ContactSection({
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex h-10 items-center gap-2 rounded-md bg-[#D62828] px-4 text-[12px] font-semibold text-white transition-colors hover:bg-[#B91F1F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D62828]"
+            className="mt-6 inline-flex h-11 items-center gap-2 rounded-lg bg-[#D62828] px-6 text-sm font-bold text-white transition-colors hover:bg-[#b91c1c] shadow-xs active:translate-y-px"
           >
-            <MessageCircle size={16} />
+            <MessageCircle size={17} />
             Fale pelo WhatsApp
           </a>
 
           {/* Dados de contato */}
-          <div className="mt-5 flex flex-col gap-4">
+          <div className="mt-8 flex flex-col gap-4">
             <ContactInfoItem icon={MapPin} label="Endereço" value={address} />
             <ContactInfoItem icon={Phone} label="Telefone / WhatsApp" value={phone} />
             <ContactInfoItem icon={Clock3} label="Atendimento" value={hours} />
@@ -112,7 +112,7 @@ export function ContactSection({
         {/* Coluna direita – mapa */}
         <div className="w-full">
           <LocationPlaceholder />
-          <p className="mt-2 text-[9px] text-neutral-500">
+          <p className="mt-2 text-[11px] text-neutral-400">
             O endereço e as informações de atendimento serão atualizados.
           </p>
         </div>

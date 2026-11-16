@@ -99,10 +99,10 @@ export default function ProductDetailPage() {
 
             <main className="flex-grow">
                 {/* Breadcrumb */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-sm text-neutral-500">
+                <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs sm:text-sm text-neutral-500">
                     <Link href="/" className="hover:text-[#D62828] transition-colors">Inicial</Link>
                     <span className="mx-2">/</span>
-                    <Link href="/catalogo" className="hover:text-[#D62828] transition-colors">Catálogo</Link>
+                    <Link href="/catalog" className="hover:text-[#D62828] transition-colors">Catálogo</Link>
                     <span className="mx-2">/</span>
                     <span className="hover:text-[#D62828] transition-colors cursor-pointer">{PRODUCT.category}</span>
                     <span className="mx-2">/</span>
@@ -110,21 +110,21 @@ export default function ProductDetailPage() {
                 </div>
 
                 {/* Alerta de Catálogo Demonstrativo */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-                    <div className="bg-neutral-50 border border-neutral-100 rounded-lg p-3 flex gap-3 items-start sm:items-center">
+                <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+                    <div className="bg-[#F8F9FA] border border-neutral-200/80 rounded-xl p-3 sm:p-4 flex gap-3 items-start sm:items-center">
                         <Info className="w-4 h-4 text-neutral-500 shrink-0 mt-0.5 sm:mt-0" />
-                        <p className="text-xs sm:text-sm text-neutral-600">
+                        <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
                             Catálogo demonstrativo. Produtos, marcas, preços e disponibilidade fictícios, apenas para apresentação. Confirme as informações com nossa equipe.
                         </p>
                     </div>
                 </div>
 
                 {/* 1. Hero do Produto */}
-                <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 lg:pb-24 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+                <section className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 pb-16 lg:pb-24 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
 
                     {/* Galeria de Imagens */}
                     <div className="flex flex-col gap-4">
-                        <div className="relative w-full aspect-[4/3] bg-[#F8F9FA] rounded-2xl overflow-hidden border border-neutral-100 flex items-center justify-center p-8">
+                        <div className="relative w-full aspect-[4/3] bg-[#F8F9FA] rounded-2xl overflow-hidden border border-neutral-200/80 flex items-center justify-center p-8 shadow-xs">
                             <Image
                                 src={PRODUCT.mainImage}
                                 alt={PRODUCT.name}
@@ -135,11 +135,11 @@ export default function ProductDetailPage() {
                         </div>
 
                         {/* Miniaturas */}
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-3 gap-3 sm:gap-4">
                             {PRODUCT.gallery.map((img, idx) => (
                                 <div
                                     key={idx}
-                                    className={`relative aspect-[4/3] bg-[#F8F9FA] rounded-lg overflow-hidden border cursor-pointer transition-colors ${idx === 0 ? 'border-[#D62828]' : 'border-neutral-200 hover:border-neutral-300'}`}
+                                    className={`relative aspect-[4/3] bg-[#F8F9FA] rounded-xl overflow-hidden border cursor-pointer transition-colors ${idx === 0 ? 'border-[#D62828]' : 'border-neutral-200 hover:border-neutral-300'}`}
                                 >
                                     <Image src={img} alt={`Miniatura ${idx + 1}`} fill className="object-contain p-2" sizes="15vw" />
                                 </div>
@@ -151,30 +151,33 @@ export default function ProductDetailPage() {
                     </div>
 
                     {/* Informações Principais e CTA */}
-                    <div className="flex flex-col pt-2 lg:pt-8">
-                        <span className="text-xs font-bold tracking-widest text-[#D62828] uppercase mb-3 flex items-center gap-2">
-                            <span className="text-neutral-400 font-normal capitalize">{PRODUCT.category}</span>
-                            <span className="text-neutral-300">•</span>
-                            <span className="text-neutral-400 font-normal capitalize">{PRODUCT.brand}</span>
-                        </span>
+                    <div className="flex flex-col pt-1 lg:pt-4">
+                        <div className="flex items-center gap-2 mb-3">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#D62828]" />
+                            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#D62828] flex items-center gap-2">
+                                <span className="capitalize">{PRODUCT.category}</span>
+                                <span className="text-neutral-300">•</span>
+                                <span className="capitalize">{PRODUCT.brand}</span>
+                            </span>
+                        </div>
 
-                        <h1 className="text-3xl lg:text-4xl font-bold text-[#151515] tracking-tight mb-4">
+                        <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-[#151515] tracking-tight leading-tight mb-3">
                             {PRODUCT.name}
                         </h1>
 
-                        <p className="text-neutral-600 text-lg mb-4">
+                        <p className="text-base sm:text-lg text-neutral-600 leading-relaxed mb-3">
                             {PRODUCT.description}
                         </p>
-                        <p className="text-sm text-neutral-500 mb-8">
+                        <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed mb-6">
                             {PRODUCT.specifications}
                         </p>
 
-                        <div className="flex flex-col gap-1 mb-6 border-b border-neutral-100 pb-8">
-                            <span className="text-3xl lg:text-4xl font-bold text-[#151515]">
+                        <div className="flex flex-col gap-1 mb-6 border-b border-neutral-100 pb-6">
+                            <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#151515] tracking-tight">
                                 R$ {PRODUCT.price.toFixed(2).replace('.', ',')}
                             </span>
-                            <span className="text-sm text-neutral-500 flex items-center gap-1.5 mt-1">
-                                <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                            <span className="text-xs sm:text-sm text-neutral-500 flex items-center gap-1.5 mt-1">
+                                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                                 {PRODUCT.statusText}
                             </span>
                         </div>
@@ -185,22 +188,22 @@ export default function ProductDetailPage() {
                             rel="noopener noreferrer" 
                             className="w-full"
                         >
-                            <Button size="lg" className="w-full bg-[#D62828] hover:bg-[#D62828]/90 text-white h-14 rounded-lg font-semibold gap-2 mb-4 text-base shadow-xs transition-all active:translate-y-px">
+                            <Button size="lg" className="w-full bg-[#D62828] hover:bg-[#b91c1c] text-white h-13 rounded-lg text-sm sm:text-base font-bold gap-2 mb-4 shadow-xs transition-all active:translate-y-px">
                                 <MessageCircle className="w-5 h-5 fill-white/20" />
                                 Consultar pelo WhatsApp
                             </Button>
                         </a>
 
-                        <p className="text-xs text-neutral-500 leading-relaxed mb-6">
+                        <p className="text-xs text-neutral-500 leading-relaxed mb-5">
                             Consulte preço e disponibilidade reais com nossa equipe. A consulta não representa uma compra ou reserva.
                         </p>
 
                         {/* Caixa de Alerta / Dúvida */}
-                        <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 flex gap-3">
+                        <div className="bg-[#F8F9FA] border border-neutral-200/80 rounded-xl p-4 flex gap-3">
                             <AlertCircle className="w-5 h-5 text-[#D62828] shrink-0 mt-0.5" />
                             <div className="flex flex-col gap-1">
                                 <span className="text-sm font-bold text-[#151515]">É a bateria certa para seu veículo?</span>
-                                <span className="text-xs text-neutral-600">Aplicação a confirmar. Consulte nossa equipe com o modelo e ano do veículo.</span>
+                                <span className="text-xs text-neutral-600 leading-relaxed">Aplicação a confirmar. Consulte nossa equipe com o modelo e ano do veículo.</span>
                             </div>
                         </div>
                     </div>
@@ -208,22 +211,22 @@ export default function ProductDetailPage() {
 
                 {/* 2. Sobre o Produto e Especificações */}
                 <section className="bg-[#F8F9FA] py-16 lg:py-24 border-t border-neutral-100">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+                    <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
 
                         {/* Coluna da Esquerda: Textos descritivos */}
                         <div className="lg:col-span-6 flex flex-col gap-8">
-                            <div className="flex flex-col gap-4">
-                                <h2 className="text-2xl font-bold text-[#151515]">Sobre o produto</h2>
-                                <div className="text-neutral-600 space-y-4 text-[15px] leading-relaxed">
+                            <div className="flex flex-col gap-3">
+                                <h2 className="text-xl sm:text-2xl font-bold text-[#151515]">Sobre o produto</h2>
+                                <div className="text-sm sm:text-base text-neutral-600 space-y-3 leading-relaxed">
                                     {PRODUCT.details.about.map((text, idx) => (
                                         <p key={idx}>{text}</p>
                                     ))}
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-4">
-                                <h3 className="text-xl font-bold text-[#151515]">Aplicações veiculares</h3>
-                                <div className="text-neutral-600 space-y-4 text-[15px] leading-relaxed">
+                            <div className="flex flex-col gap-3">
+                                <h3 className="text-lg sm:text-xl font-bold text-[#151515]">Aplicações veiculares</h3>
+                                <div className="text-sm sm:text-base text-neutral-600 space-y-3 leading-relaxed">
                                     {PRODUCT.details.application.map((text, idx) => (
                                         <p key={idx}>{text}</p>
                                     ))}
@@ -233,18 +236,18 @@ export default function ProductDetailPage() {
 
                         {/* Coluna da Direita: Card de Especificações Técnicas */}
                         <div className="lg:col-span-6">
-                            <Card className="border-neutral-200 shadow-sm rounded-2xl bg-white h-full">
+                            <Card className="border-neutral-200/80 shadow-xs rounded-2xl bg-white h-full">
                                 <CardContent className="p-6 lg:p-8">
-                                    <h3 className="text-xl font-bold text-[#151515] mb-6">Especificações técnicas</h3>
+                                    <h3 className="text-lg sm:text-xl font-bold text-[#151515] mb-5">Especificações técnicas</h3>
 
                                     <div className="flex flex-col">
                                         {Object.entries(PRODUCT.techSpecs).map(([key, value], idx) => (
                                             <div
                                                 key={idx}
-                                                className="flex flex-col sm:flex-row py-3 sm:py-4 border-b border-neutral-100 last:border-0"
+                                                className="flex flex-col sm:flex-row py-3.5 border-b border-neutral-100 last:border-0"
                                             >
-                                                <span className="text-sm text-neutral-500 sm:w-1/3 mb-1 sm:mb-0">{key}</span>
-                                                <span className="text-sm font-medium text-[#151515] sm:w-2/3">{value}</span>
+                                                <span className="text-xs sm:text-sm text-neutral-500 sm:w-1/3 mb-1 sm:mb-0">{key}</span>
+                                                <span className="text-xs sm:text-sm font-semibold text-[#151515] sm:w-2/3">{value}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -260,21 +263,27 @@ export default function ProductDetailPage() {
                 </section>
 
                 {/* 3. Produtos Relacionados */}
-                <section className="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-neutral-100">
-                    <div className="mb-10">
-                        <h2 className="text-2xl lg:text-3xl font-bold text-[#151515]">
+                <section className="py-16 lg:py-24 max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 border-b border-neutral-100">
+                    <div className="mb-8 space-y-2">
+                        <div className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#D62828]" />
+                            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#D62828]">
+                                RELACIONADOS
+                            </span>
+                        </div>
+                        <h2 className="text-2xl sm:text-3xl font-extrabold text-[#151515] tracking-tight">
                             Outros cuidados para seu veículo
                         </h2>
-                        <p className="text-neutral-500 mt-2">
+                        <p className="text-sm sm:text-base text-neutral-500">
                             Conheça também estas opções demonstrativas do catálogo.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                         {RELATED_PRODUCTS.map((product) => (
                             <ProductCard
                                 key={product.id}
-                                id={product.id} /* <-- Propriedade ID adicionada */
+                                id={product.id}
                                 category={product.category}
                                 brand={product.brand}
                                 name={product.name}
@@ -289,20 +298,20 @@ export default function ProductDetailPage() {
                 </section>
 
                 {/* 4. CTA Inferior */}
-                <section className="bg-[#F8F9FA] py-16 lg:py-20">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+                <section className="bg-[#F8F9FA] py-16 lg:py-24">
+                    <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-8">
                         <div className="flex flex-col gap-2 max-w-2xl">
-                            <h2 className="text-2xl md:text-3xl font-bold text-[#151515] tracking-tight">
+                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#151515] tracking-tight">
                                 A peça certa começa com uma boa conversa.
                             </h2>
-                            <p className="text-neutral-500 text-lg">
+                            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed">
                                 Envie o modelo, o ano e a peça que procura. Nossa equipe ajuda a confirmar a aplicação e a disponibilidade.
                             </p>
                         </div>
 
                         <Link href={buildWhatsAppLink('Olá! Gostaria de falar sobre uma peça para o meu veículo.')} target="_blank" rel="noopener noreferrer" className="w-full lg:w-auto">
-                            <Button size="lg" className="w-full lg:w-auto bg-[#D62828] hover:bg-[#D62828]/90 text-white h-12 px-8 rounded-md font-semibold gap-2 shadow-xs transition-all active:translate-y-px">
-                                <MessageCircle className="w-5 h-5 fill-white/20" />
+                            <Button size="lg" className="w-full lg:w-auto bg-[#D62828] hover:bg-[#b91c1c] text-white h-11 px-6 rounded-lg text-sm font-bold gap-2 shadow-xs transition-all active:translate-y-px">
+                                <MessageCircle className="w-4 h-4" />
                                 Fale pelo WhatsApp
                             </Button>
                         </Link>
