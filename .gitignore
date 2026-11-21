@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# Firebase Admin credentials
+/firebase-admin-key.json
+/firebase-service-account.json
+/serviceAccountKey.json
+/diniz-auto-pecas-firebase-adminsdk-fbsvc-160544393d.json

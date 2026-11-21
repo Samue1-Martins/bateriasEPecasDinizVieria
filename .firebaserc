@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "baterias-e-pecas-diniz-vieira"
-  }
+    "default": "diniz-auto-pecas",
+    "y": "diniz-auto-pecas"
+  },
+  "targets": {},
+  "etags": {}
 }
