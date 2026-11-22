@@ -1,0 +1,28 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isAdmin() {
+      return request.auth != null && request.auth.token.admin == true;
+    }
+
+    match /products/{allPaths=**} {
+      // Leitura pública das imagens do catálogo
+      allow read: if true;
+
+      // Upload e atualização apenas para administradores, somente imagens até 5 MB
+      allow create, update: if isAdmin()
+        && request.resource != null
+        && request.resource.size <= 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+
+      // Exclusão apenas para administradores
+      allow delete: if isAdmin();
+    }
+
+    // Bloqueia qualquer outro caminho por padrão
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

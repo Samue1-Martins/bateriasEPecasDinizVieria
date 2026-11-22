@@ -22,7 +22,9 @@ export interface Product {
   active: boolean;
   featured: boolean;
   mainImageUrl: string;
+  mainImagePath?: string;
   galleryUrls: string[];
+  galleryPaths?: string[];
   specifications: ProductSpecification[];
   vehicleApplications: string[];
   createdAt?: string;
